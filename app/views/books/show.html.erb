@@ -6,6 +6,9 @@
   <p>Opinion：<%= @book.body %></p>
   <p>投稿ユーザー画像：<%#= image_tag 'sample-author1.jpg' %></p>
   <p>name：<%= @book.user.name %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "削除", book_path(@book), method: :delete %>
+  <% end %>
 </div>
 
 <h1>New book</h1>
