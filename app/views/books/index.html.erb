@@ -2,11 +2,9 @@
 <!--<p>Find me in app/views/books/index.html.erb</p>-->
 <% @books.each do |book| %>
   <div>
-    <!--画像クリックでshowへ遷移？たぶんいらない-->
     <%= link_to book_path(book.id) do %>
-      <%= image_tag book.get_image %>
+      <%= image_tag book.user.get_profile_image(100,100) %>
     <% end %>
-    
     <p>投稿ユーザー画像：<%#= image_tag 'sample-author1.jpg' %></p>
     <p>Title：<%= book.title %></p>
     <p>Opinion：<%= book.body %></p>
