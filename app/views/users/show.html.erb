@@ -2,15 +2,16 @@
 <!--<p>Find me in app/views/users/show.html.erb</p>-->
 
 <div>
-  <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image(100,100) %>
+  <h3><%= @user.name %></h3>
+  <h3><%= @user.introduction %></h3>
   <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path %></p>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
   <% end %>
 </div>
 
 <h1>New book</h1>
-<%= form_with model: @book do |f| %>
+<%= form_with model: @newbook do |f| %>
   <!--<h4>画像</h4>-->
   <%#= f.file_field :image, accept: "image/*" %>
   <h4>Title</h4>
@@ -27,7 +28,11 @@
   <%= link_to book_path(book.id) do %>
     <%= image_tag book.user.get_profile_image(100,100) %>
   <% end %>
-  <p>Title：<%= book.title %></p>
+  <p>Title：
+    <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+    <% end %>
+  </p>
   <p>Opinion：<%= book.body %></p>
 </div>
 <% end %>
