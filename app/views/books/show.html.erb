@@ -1,5 +1,4 @@
-<!--<h1>Books#show</h1>-->
-<!--<p>Find me in app/views/books/show.html.erb</p>-->
+<!--プロフィール-->
 <div>
   <%= image_tag @book.user.get_profile_image(100,100) %>
   <p>name：<%= @book.user.name %></p>
@@ -10,17 +9,10 @@
 </div>
 
 
-<h1>New book</h1>
-<%= form_with model: @newbook do |f| %>
-  <!--<h4>画像</h4>-->
-  <%#= f.file_field :image, accept: "image/*" %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit '投稿' %>
-<% end %>
+<!--投稿フォーム-->
+<%= render 'newbook', newbook: @newbook %>
 
+<!--投稿一覧-->
 <div>
   <%= image_tag @book.user.get_profile_image(100,100) %>
   <p>Title：<%= @book.title %></p>

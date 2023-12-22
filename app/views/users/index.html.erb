@@ -1,28 +1,10 @@
-<!--<h1>Users#index</h1>-->
-<!--<p>Find me in app/views/users/index.html.erb</p>-->
+<!--プロフィール-->
+<%= render 'books/profile', user: @user %>
 
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <h3><%= @user.name %></h3>
-  <h3><%= @user.introduction %></h3>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
-  <% end %>
-</div>
-
-<h1>New book</h1>
-<%= form_with model: @newbook do |f| %>
-  <!--<h4>画像</h4>-->
-  <%#= f.file_field :image, accept: "image/*" %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit '投稿' %>
-<% end %>
+<!--投稿フォーム-->
+<%= render 'books/newbook', newbook: @newbook %>
 
 <!-- ユーザー一覧 -->
-
 <% @users.each do |user| %>
 <div>
     <%#= image_tag @user.get_image %>
