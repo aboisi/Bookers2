@@ -11,13 +11,12 @@ class UsersController < ApplicationController
     @books = @user.books
     @newbook = Book.new
     @book = Book.new
-    
+
   end
 
   def edit
-    
-    @user = User.find(params[:id])
-    unless @user == current_user
+    @newbook = User.find(params[:id])
+    unless @newbook == current_user
       redirect_to books_path
     end
   end
@@ -27,12 +26,13 @@ class UsersController < ApplicationController
   unless user.id == current_user.id
     redirect_to books_path
   end
-    
-    @user = User.find(params[:id])
-    @user = current_user
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
-    else 
+
+    @newbook = User.find(params[:id])
+    @newbook = current_user
+    if @newbook.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@newbook.id)
+    else
       render :edit
     end
   end

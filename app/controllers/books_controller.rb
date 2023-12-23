@@ -1,12 +1,13 @@
 class BooksController < ApplicationController
   def new
   end
-  
+
   def create
     @newbook = Book.new(book_params)
     @newbook.user_id = current_user.id
     if @newbook.save
       #データが保存された場合
+      flash[:notice] = "You have created book successfully."
       redirect_to book_path(@newbook.id)
     else
       # バリデーションにより保存できなかった場合
@@ -15,17 +16,15 @@ class BooksController < ApplicationController
       @books = Book.all
       render :index
     end
-  end 
+  end
 
   def index
-    # @book = Book.new
     @newbook = Book.new
     @books = Book.all
     @user = current_user
   end
 
   def show
-    # @book = Book.new
     @book = Book.find(params[:id])
     @newbook = Book.new
   end
@@ -36,28 +35,29 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-  
+
   def update
     newbook = Book.find(params[:id])
   unless newbook.user_id == current_user.id
     redirect_to books_path
   end
-  
+
     @newbook = Book.find(params[:id])
     @newbook.user_id = current_user.id
   if @newbook.update(book_params)
+    flash[:notice] = "You have updated book successfully."
     redirect_to book_path(@newbook.id)
   else
     render :edit
   end
-  end 
-  
+  end
+
   def destroy
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
   end
-  
+
   private
 
   def book_params
