@@ -1,1 +1,125 @@
 new
+
+ <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid" style="background-color: #2b2b2b;">
+          <a class="navbar-brand p-3" >Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Users', users_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Books', books_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+            
+            
+            <% else %>
+             <li class="nav-item">
+              <%= link_to 'Home', root_path, class: 'nav-link text-white' %>
+            </li>
+             <li class="nav-item">
+              <%= link_to 'About', about_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log in", new_user_session_path, class: 'nav-link text-white' %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
+    <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <p class="text-center">CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+
+ <body>
+    <header class="container-fluid" style="background-color: #2b2b2b;">
+        <div class="row" >
+          <div class="col-1" style="color:#ffffff;">
+            Bookers
+          </div>
+          <div class="col-7 "></div> 
+            <% if user_signed_in? %>
+              <div class="col-1 " style="color:#ffffff;">
+                    <!--マイページ-->
+                    <i class="fa-solid fa-house"></i>
+                    <%= link_to 'Home', user_path(current_user.id),　class: 'nav-link text-white' %>
+              </div>
+              <div class="col-1" style="color:#ffffff;">
+                    <!--ユーザー一覧-->
+                    <i class="fa-solid fa-users"></i>
+                    <%= link_to 'Users', users_path %>
+              </div>
+              <div class="col-1" style="color:#ffffff;">
+                    <!--投稿一覧-->
+                    <i class="fa-solid fa-book-open"></i>
+                    <%= link_to 'Books', books_path %>
+              </div>
+              <div class="col-1" style="color:#ffffff;">
+                    <!--ログアウト-->
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+              </div>
+                
+            <% else %>
+              <div>
+                <!--Top-->
+                <i class="fa-solid fa-house"></i>
+                <%= link_to "Home", root_path %>
+              </div>
+              <div>
+                <!--about-->
+                <i class="fa-solid fa-link"></i>
+                <%= link_to "About", about_path %>
+              </div>
+              <div>
+                <!--新規登録-->
+                <i class="fa-solid fa-user-plus"></i>
+                <%= link_to "sign up", new_user_registration_path %>
+              </div>
+              <div>
+                <!--ログイン-->
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <%= link_to "Log in", new_user_session_path %>
+              </div>
+            <% end %>
+          </div>
+        </div>  
+  　</header>
+    <%= yield %>
+    <footer>
+      <h4>
+        CopyRight Infratop.inc
+      </h4>
+    </footer>
+  </body>
+</html>
+
