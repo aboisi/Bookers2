@@ -6,12 +6,14 @@ class BooksController < ApplicationController
     @newbook = Book.new(book_params)
     @newbook.user_id = current_user.id
     if @newbook.save
+      #データが保存された場合
       redirect_to book_path(@newbook.id)
     else
+      # バリデーションにより保存できなかった場合
+      # indexアクションと同じことしている
       @user = current_user
       @books = Book.all
       render :index
-      # redirect_to books_path
     end
   end 
 
@@ -29,15 +31,14 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @newbook = Book.new
-    @book = Book.find(params[:id])
+    @newbook = Book.find(params[:id])
   end
   
   def update
-    @book = Book.find(params[:id])
-    @book.user_id = current_user.id
-  if @book.update(book_params)
-    redirect_to book_path(@book.id)
+    @newbook = Book.find(params[:id])
+    @newbook.user_id = current_user.id
+  if @newbook.update(book_params)
+    redirect_to book_path(@newbook.id)
   else
     render :edit
   end

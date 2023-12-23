@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :books, dependent: :destroy
+  # バリデーションで名前設定
+   validates :name, length: { minimum: 2 }, presence: true
   
   #プロフィール画像の設定
   has_one_attached :profile_image
