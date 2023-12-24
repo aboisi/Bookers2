@@ -1,24 +1,42 @@
-<!--エラーメッセージ-->
-<%= render 'error', newbook: @newbook %>
-
-<!--プロフィール-->
-<%= render 'profile', user: @user %>
-
-<!--投稿フォーム-->
-<%= render 'newbook', newbook: @newbook %>
-
-<!--投稿一覧-->
-<% @books.each do |book| %>
-  <div>
-    <%= link_to user_path(book.user.id) do %>
-      <%= image_tag book.user.get_profile_image(100,100) %>
-    <% end %>
-    <p>Title：
-    <%= link_to book_path(book.id) do %>
-      <%= book.title %>
-    <% end %>
-    </p>
-    <p>Opinion：<%= book.body %></p>
-    <p>name：<%= book.user.name %></p>
+<div class="container">
+  <div class="row">
+    <!--エラーメッセージ-->
+    <%= render 'error', newbook: @newbook %>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-md-3">
+      <!--プロフィール-->
+      <%= render 'profile', user: @user %>
+
+      <!--投稿フォーム-->
+      <%= render 'newbook', newbook: @newbook %>
+    </div>
+    <div class="offset-md-1"></div>
+    <div class="col-md-8">
+      <!--投稿一覧-->
+      <h2>Users</h2>
+      <table class="table">
+        <tr>
+          <th>Title</th>
+          <th>Opinion</th>
+          <th></th>
+        </tr>
+        <% @books.each do |book| %>
+        <tr>
+          <th>
+            <%= link_to user_path(book.user.id) do %>
+              <%= image_tag book.user.get_profile_image(100,100) %>
+            <% end %>
+          </th>
+          <th>
+            <%= link_to book_path(book.id) do %>
+              <%= book.title %>
+            <% end %>
+          </th>
+          <th><%= book.body %></th>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

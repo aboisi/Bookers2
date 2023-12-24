@@ -1,36 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 text-left mb-2">
-      <!--エラーメッセージ-->
-      <%= render 'books/error', newbook: @newbook %>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-md-3">
       <!--プロフィール-->
       <%= render 'books/profile', user: @user %>
-          
+
       <!--投稿フォーム-->
       <%= render 'books/newbook', newbook: @newbook %>
     </div>
     <div class="offset-md-1"></div>
     <div class="col-md-8">
       <!-- ユーザー一覧 -->
-      <h1 class="col-12 text-left">Users</h1>
-        <table class="table">
-          <tr>
-            <th>image</th>
-            <th>name</th>
-            <th></th>
-          </tr>
-          <% @users.each do |user| %>
-          <tr>
-            <td><%= image_tag user.get_profile_image(100,100) %></td>
-            <td><%= user.name %></td>
-            <td><%= link_to "show", user_path(user.id) %></td>
-          </tr>
-          <% end %>
-        </table>
+      <h2>Users</h2>
+      <table class="table">
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th></th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image(100,100) %></td>
+          <td><%= user.name %></td>
+          <td><%= link_to "show", user_path(user.id) %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>
