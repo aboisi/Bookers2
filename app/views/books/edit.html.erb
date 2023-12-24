@@ -9,10 +9,10 @@
 
       <%= form_with model: @newbook do |f| %>
 
-        <h6>Title</h6>
+        <label>Title</label><br>
           <%= f.text_field :title, :size=>"60" %>
 
-        <h6 class="mt-4">Opinion</h6>
+        <label class="mt-4">Opinion</label><br>
           <%= f.text_area :body, :size=>"60" %>
 
         <p class="mt-2"><%= f.submit 'Update Book', class: "btn btn-sm btn-primary btn-success" %></p>
