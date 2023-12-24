@@ -1,5 +1,5 @@
 <% if newbook.errors.any? %>
-  <%= newbook.errors.count %>件のエラーが発生しました
+  <%= newbook.errors.count %>errors prohibited this obj from being saved:
   <ul>
     <% newbook.errors.full_messages.each do |message| %>
       <li><%= message %></li>
