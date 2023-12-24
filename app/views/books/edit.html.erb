@@ -1,20 +1,27 @@
-    <h1>Editing Book</h1>
-    
-  <!--エラーメッセージ-->
-<%#= render 'error', newbook: @newbook %>
-    
-    <%= form_with model: @newbook do |f| %>
-    
-    <h4>Title</h4>
-    <%= f.text_field :title %>
-    
-    <h4>Opinion</h4>
-    <%= f.text_area :body %>
-    
-    <p><%= f.submit 'Update Book' %></p>
-    
-   <p><%= link_to "Show", book_path(@newbook.id) %> |
-    
-    <%= link_to "Back", books_path %></p>
-    
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3"></div>
+    <div class="col-md-6">
+      <h1>Editing Book</h1>
+
+      <!--エラーメッセージ-->
+      <%= render 'error', newbook: @newbook %>
+
+      <%= form_with model: @newbook do |f| %>
+
+        <h6>Title</h6>
+          <%= f.text_field :title, :size=>"60" %>
+
+        <h6 class="mt-4">Opinion</h6>
+          <%= f.text_area :body, :size=>"60" %>
+
+        <p class="mt-2"><%= f.submit 'Update Book', class: "btn btn-sm btn-primary btn-success" %></p>
+
+        <p><%= link_to "Show", book_path(@newbook.id) %> |
+           <%= link_to "Back", books_path %></p>
+
+      <% end %>
+    </div>
+    <div class="offset-md-3"></div>
+  </div>
+</div>
