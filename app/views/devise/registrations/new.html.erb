@@ -3,7 +3,7 @@
         <div class="col-6">
           <h2>Sign up</h2>
           
-          <%= form_with model: @user, url: user_registration_path do |f| %>
+          <%= form_with model: @user, url: user_registration_path,local: true do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
             
             <div class="field">
@@ -36,6 +36,6 @@
           
           <%= render "devise/shared/links" %>
         </div>
-      <div class="col-6"></div>
+      <div class="offsset-md-6"></div>
     </div>
 </div>

@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   # バリデーションで名前設定
-   validates :name, length: { minimum: 2, maximum: 20 }
+   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
   #プロフィール画像の設定
