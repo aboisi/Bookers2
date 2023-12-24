@@ -3,31 +3,54 @@
   <%= flash[:notice] %>
 </div>
 
-<!--エラーメッセージ-->　
-<%= render 'error', newbook: @newbook %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--プロフィール-->
+      <h2>User info</h2>
+      <div>
+        <%= image_tag @book.user.get_profile_image(100,100) %>
+      </div>
+      <table class="table">
+        <tr>
+          <th>name</th>
+          <td><%= @book.user.name %></td>
+        </tr>
+        <tr>
+          <th>introdauction</th>
+        <td><%= @book.user.introduction %></td>
+        </tr>
+        </table>
+        <%= link_to edit_user_path, class: 'btn btn-block btn-outline-secondary' do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
 
-<!--プロフィール-->
-<div>
-  <%= image_tag @book.user.get_profile_image(100,100) %>
-  <p>name：<%= @book.user.name %></p>
-  <p>introduction：<%= @book.user.introduction %></p>
-  <% if @book.user == current_user %>
-    <p><%= link_to "編集", edit_user_path %></p>
-  <% end %>
-</div>
 
-<!--投稿フォーム-->
-<%= render 'newbook', newbook: @newbook %>
-
-<!--投稿一覧-->
-<div>
-  <%= image_tag @book.user.get_profile_image(100,100) %>
-  <p>Title：<%= @book.title %></p>
-  <p>Opinion：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%#= image_tag 'sample-author1.jpg' %></p>
-  <p>name：<%= @book.user.name %></p>
-  <% if @book.user == current_user %>
-  <%= link_to "Edit", edit_book_path(@book) %>
-    <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-  <% end %>
+      <!--投稿フォーム-->
+      <%= render 'newbook', newbook: @newbook %>
+    </div>
+    <div class="offset-md-1"></div>
+    <div class="col-md-8">
+      <!--投稿一覧-->
+      <h2>Book detail</h2>
+      <table class="table">
+        <tr>
+          <td>
+            <%= link_to user_path(@book.user.id) do %>
+            <%= image_tag @book.user.get_profile_image(100,100) %>
+            <% end %><br>
+            <%= link_to  user_path(@book.user.id) do %>
+            <%= @book.user.name %>
+            <% end %>
+          </td>
+          <td><%= @book.title %></td>
+          <td>Opinion：<%= @book.body %></td>
+          <% if @book.user == current_user %>
+            <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-primary btn-success" %></td>
+            <td><%= link_to "Destroy", book_path(@book),class: "btn btn-sm btn-primary btn-danger" , method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
