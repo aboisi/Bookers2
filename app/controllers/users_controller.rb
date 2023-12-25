@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def edit
     @newbook = User.find(params[:id])
     unless @newbook == current_user
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     end
   end
 

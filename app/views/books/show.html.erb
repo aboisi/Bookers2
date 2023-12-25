@@ -21,7 +21,7 @@
         <td><%= @book.user.introduction %></td>
         </tr>
         </table>
-        <%= link_to edit_user_path, class: 'btn btn-block btn-outline-secondary' do %>
+        <%= link_to edit_user_path(@book.user.id), class: 'btn btn-block btn-outline-secondary' do %>
           <i class="fa-solid fa-user-gear"></i>
         <% end %>
 
@@ -29,8 +29,7 @@
       <!--投稿フォーム-->
       <%= render 'newbook', newbook: @newbook %>
     </div>
-    <div class="offset-md-1"></div>
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-1">
       <!--投稿一覧-->
       <h2>Book detail</h2>
       <table class="table">
@@ -43,7 +42,11 @@
             <%= @book.user.name %>
             <% end %>
           </td>
-          <td><%= @book.title %></td>
+          <td>
+            <%= link_to book_path(@book.id) do %>
+              <%= @book.title %>
+            <% end %>
+          </td>
           <td><%= @book.body %></td>
           <% if @book.user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-primary btn-success" %></td>

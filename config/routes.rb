@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get 'bundle/install'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
  root 'homes#top'
- get 'homes/about' => 'homes#about', as: 'about'
+ get '/home/about', to: 'homes#about', as: 'about'
 end
